@@ -1,13 +1,10 @@
-package com.shaya.curd
+package com.shaya.curd.ui
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.shaya.curd.databinding.ActivityAddProductBinding
-
-import com.shaya.curd.ui.AddProductGridAdapter
-import com.shaya.curd.ui.ProductViewModel
 
 class AddProduct : AppCompatActivity() {
     private lateinit var viewModel: ProductViewModel

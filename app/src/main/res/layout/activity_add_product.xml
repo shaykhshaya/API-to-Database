@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddProduct">
+        tools:context=".ui.AddProduct">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/add_recyclerView"
@@ -31,18 +31,7 @@
             app:listData="@{viewModel.products}"/>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/tick_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_done_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="8dp"
-            android:visibility="gone"
 
-            app:backgroundTint="@color/purple_700"
-            app:tint="@color/white" />
 
         <ImageView
             android:id="@+id/status_image"

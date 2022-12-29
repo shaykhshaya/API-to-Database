@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.shaya.curd.databinding.ActivityMainBinding
+import com.shaya.curd.ui.AddProduct
 
 class MainActivity : AppCompatActivity() {
 
