@@ -1,49 +1,102 @@
 package com.shaya.curd.ui.viewmodel
 
+import android.content.ClipData
 import androidx.lifecycle.*
+import com.shaya.curd.BaseApplication
 import com.shaya.curd.data.ProductItemDao
+import com.shaya.curd.data.ProductItemDatabase
 import com.shaya.curd.network.ProductItem
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ItemListViewModel(private val productItemDao: ProductItemDao): ViewModel() {
+class ItemListViewModel: ViewModel() {
 
+    private val productItemDao: ProductItemDao = BaseApplication.database.productItemDao()
 
     val allItems: LiveData<List<ProductItem>> = productItemDao.getProducts().asLiveData()
+
+    fun addNewItem(productItem: ProductItem){
+        insertItem(productItem)
+    }
+
+    private fun insertItem(productItem: ProductItem){
+        viewModelScope.launch {
+            productItemDao.insert(productItem)
+        }
+    }
+
+   /* fun addNewItem(title: String, description: String, imageUrl: String){
+        val newItem = ProductItem(
+            title = title, description = description, image = imageUrl
+        )
+        insertItem(newItem)
+    }*/
+
+
+
+
+
+
+
+    fun updateItem(
+        itemId: Int,
+        title: String,
+        description: String,
+        imageUrl: String
+    ) {
+        val updatedItem = getUpdatedItemEntry(itemId, title, description, imageUrl)
+        updateItem(updatedItem)
+    }
+
+    private fun getUpdatedItemEntry(
+        itemId: Int,
+        title: String,
+        description: String,
+        imageUrl: String
+    ): ProductItem {
+        return ProductItem(
+            id = itemId,
+            title = title,
+            description = description,
+            image = imageUrl
+        )
+    }
+
+
+
+    private fun updateItem(productItem: ProductItem){
+        viewModelScope.launch {
+            productItemDao.update(productItem)
+        }
+    }
+
 
     fun retrieveItem(id: Int): LiveData<ProductItem>{
         return productItemDao.getProduct(id).asLiveData()
     }
 
-    fun addItem(title: String, description: String, image: String){
-        val item = ProductItem(title = title, description = description, image = image)
+    fun deleteItem(productItem: ProductItem){
         viewModelScope.launch {
-            productItemDao.insert(item)
+            productItemDao.delete(productItem)
         }
     }
 
-    fun updateItem(id: Int, title: String, description: String, image: String){
-        val item = ProductItem(id = id, title = title, description = description, image = image)
-        viewModelScope.launch {
-            productItemDao.update(item)
-        }
-    }
+   /* //to instantiate the InventoryViewModel instance
+    class ItemListViewModelFactory(private val itemDao: ProductItemDao): ViewModelProvider.Factory{
 
-    fun deleteItem(item: ProductItem){
-        viewModelScope.launch(Dispatchers.IO){
-            productItemDao.delete(item)
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(ItemListViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return ItemListViewModel(itemDao) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
-    }
+    }*/
 
 
 }
 
 
-class ItemListViewModelFactory(private val productItemDao: ProductItemDao): ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(ItemListViewModel::class.java)){
-            @Suppress("UNCHECKED CAST")
-            return ItemListViewModel(productItemDao) as T}
-        throw java.lang.IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
+
+
+
+

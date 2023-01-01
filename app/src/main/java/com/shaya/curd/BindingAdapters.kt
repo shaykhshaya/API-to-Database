@@ -2,14 +2,13 @@ package com.shaya.curd
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.shaya.curd.network.ProductItem
 import com.shaya.curd.ui.AddProductGridAdapter
-import com.shaya.curd.ui.ProductApiStatus
+import com.shaya.curd.ui.viewmodel.ProductApiStatus
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -35,7 +34,8 @@ data: List<ProductItem>?){
 
 @BindingAdapter("productApiStatus")
 fun bindStatus(statusImageView: ImageView,
-               status: ProductApiStatus){
+               status: ProductApiStatus
+){
 
     when(status){
         ProductApiStatus.LOADING -> {

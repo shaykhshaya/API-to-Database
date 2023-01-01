@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.ItemListActivity">
 
         <ImageView
             android:id="@+id/wallpaper"
@@ -39,14 +39,14 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/add_recyclerView"
+            android:id="@+id/list_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/wallpaper"
-            tools:listitem="@layout/main_item_list" />
+            tools:listitem="@layout/list_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_add_btn"

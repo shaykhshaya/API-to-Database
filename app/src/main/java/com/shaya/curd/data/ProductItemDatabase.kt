@@ -8,27 +8,25 @@ import com.shaya.curd.network.ProductItem
 
 
 @Database(entities = [ProductItem::class], version = 1, exportSchema = false)
-abstract class ProductItemDatabase:RoomDatabase() {
+abstract class ProductItemDatabase : RoomDatabase() {
 
     abstract fun productItemDao(): ProductItemDao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: ProductItemDatabase? = null
-        fun getDatabase(context: Context): ProductItemDatabase{
-            return INSTANCE?: synchronized(this){
-                val instance = Room.databaseBuilder(context.applicationContext, ProductItemDatabase::class.java, "product_database").fallbackToDestructiveMigration().build()
+        fun getDatabase(context: Context): ProductItemDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context,
+                    ProductItemDatabase::class.java,
+                    "product_database"
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
-
-
-
-
-
-
 
 
 }

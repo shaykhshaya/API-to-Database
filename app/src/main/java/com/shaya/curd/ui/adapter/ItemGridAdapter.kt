@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.shaya.curd.databinding.AddItemListBinding
+import com.shaya.curd.databinding.GridItemBinding
 import com.shaya.curd.network.ProductItem
 
-class AddProductGridAdapter: ListAdapter<ProductItem,
+class AddProductGridAdapter(val callback: (ProductItem) -> Unit): ListAdapter<ProductItem,
         AddProductGridAdapter.AddProductViewHolder>(DiffCallback) {
 
-            class AddProductViewHolder(private var binding: AddItemListBinding):RecyclerView.ViewHolder(binding.root){
+            class AddProductViewHolder(private var binding: GridItemBinding):RecyclerView.ViewHolder(binding.root){
 
                 fun bind(productItem: ProductItem){
                     binding.photo = productItem
@@ -22,14 +22,27 @@ class AddProductGridAdapter: ListAdapter<ProductItem,
             }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddProductViewHolder {
-        val adapterLayout = AddItemListBinding.inflate(LayoutInflater.from(parent.context))
+        val adapterLayout = GridItemBinding.inflate(LayoutInflater.from(parent.context))
         return AddProductViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: AddProductViewHolder, position: Int) {
-        val productPhoto = getItem(position)
-        holder.bind(productPhoto)
+        val productItem = getItem(position)
+        holder.itemView.setOnClickListener {
+            callback(productItem)
+        }
+
+        holder.bind(productItem)
+
     }
+
+
+
+
+
+
+
+
 
     companion object DiffCallback: DiffUtil.ItemCallback<ProductItem>()
     {

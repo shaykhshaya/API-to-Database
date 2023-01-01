@@ -6,17 +6,17 @@
     <data>
         <variable
             name="viewModel"
-            type="com.shaya.curd.ui.ProductViewModel" />
+            type="com.shaya.curd.ui.viewmodel.ProductViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AddProduct">
+        tools:context=".ui.ItemGridActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/add_recyclerView"
+            android:id="@+id/grid_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,8 +27,9 @@
             app:spanCount="2"
             android:padding="6dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/add_item_list"
+            tools:listitem="@layout/grid_item"
             app:listData="@{viewModel.products}"/>
+
 
 
 
