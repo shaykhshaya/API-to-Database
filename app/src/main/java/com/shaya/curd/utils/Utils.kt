@@ -9,7 +9,7 @@ fun ImageView.loadImageByURL(context: Context,  url: String?){
     Glide
         .with(context)
         .load(url)
-        .centerCrop()
+        .fitCenter()
         .placeholder(R.drawable.loading_animation)
         .error(R.drawable.ic_connection_error)
         .into(this)

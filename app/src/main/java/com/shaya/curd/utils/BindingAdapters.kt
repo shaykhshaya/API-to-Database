@@ -9,10 +9,13 @@ import coil.load
 import com.shaya.curd.network.ProductItem
 import com.shaya.curd.ui.AddProductGridAdapter
 import com.shaya.curd.ui.viewmodel.ProductApiStatus
+import com.shaya.curd.utils.loadImageByURL
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
+    imgView.loadImageByURL(imgView.context, imgUrl)
+
+   /* imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         imgView.load(imgUri)
         {
@@ -21,7 +24,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             error(R.drawable.ic_broken_image)
 
         }
-    }
+    }*/
 }
 
 
