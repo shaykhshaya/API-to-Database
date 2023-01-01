@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ItemDescriptionActivity">
+    tools:context=".ui.activity.ItemDescriptionActivity">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/buttons"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,29 +22,26 @@
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
+                android:layout_margin="8dp"
                 android:adjustViewBounds="true"
+                android:src="@drawable/sc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_height="300dp"
-                android:src="@drawable/sc" />
+                tools:layout_height="300dp" />
 
             <TextView
                 android:id="@+id/text_view_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:padding="8dp"
                 android:text="Title"
-
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_view" />
@@ -55,7 +53,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:padding="8dp"
-
                 android:text="Description of the Image"
                 android:textColor="#4C4A4A"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,10 +66,8 @@
     </ScrollView>
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttons"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -87,8 +82,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:padding="10dp"
-            android:src="@drawable/ic_baseline_update_24"
-            android:text="Update"
+            android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toTopOf="@id/delete_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,10 +94,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/blue"
+            android:backgroundTint="@color/red"
             android:padding="4dp"
             android:src="@drawable/ic_baseline_delete_forever_24"
-            android:text="Delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,5 +105,18 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/image_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/white_off"
+        android:scaleType="center"
+        android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

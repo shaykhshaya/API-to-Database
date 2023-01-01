@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.shaya.curd.ui.viewmodel.ProductViewModel" />
@@ -13,25 +14,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ItemGridActivity">
+        tools:context=".ui.activity.ItemGridActivity">
+
+        <ImageView
+            android:id="@+id/imgProgress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:productApiStatus="@{viewModel.status}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/grid_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:listData="@{viewModel.products}"
             app:spanCount="2"
-            android:padding="6dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/grid_item"
-            app:listData="@{viewModel.products}"/>
-
-
-
+            tools:listitem="@layout/grid_item" />
 
 
         <ImageView
@@ -43,6 +53,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:productApiStatus="@{viewModel.status}" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/image_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white_off"
+            android:scaleType="center"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
