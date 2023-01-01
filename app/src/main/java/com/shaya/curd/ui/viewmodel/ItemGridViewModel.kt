@@ -1,4 +1,4 @@
-package com.shaya.curd.ui
+package com.shaya.curd.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
